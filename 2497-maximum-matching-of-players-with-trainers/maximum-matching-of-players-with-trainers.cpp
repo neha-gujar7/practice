@@ -9,8 +9,11 @@ public:
             if(players[i]<=trainers[j]){
                 i++;j++;count++;
             }
-            else{
+            else if(players[i]>trainers[j]){
                 j++;
+            }
+            else{
+                i++;
             }
         }
         return count;
