@@ -10,15 +10,15 @@ public:
             i++;j++;
             c++;
         }
-        // else if(g[i]>s[j]){
-        //     j++;
-        // }
-        // else {
-        //     i++;
-        // }   
-        else {
+        else if(g[i]>s[j]){
             j++;
-        }       
+        }
+        else {
+            i++;
+        }   
+        // else {
+        //     j++;
+        // }       
        }
        return c;
     }
