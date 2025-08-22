@@ -29,13 +29,13 @@ public:
     }
     
     int pickIndex() {
-        int randNum = rand() % total + 1; // random from [1, total]
+        int random= rand() % total + 1; // random from [1, total]
         
         // binary search manually
         int l = 0, r = prefix.size()-1;
         while(l < r){
             int mid = (l + r) / 2;
-            if(prefix[mid] < randNum)
+            if(prefix[mid] < random)
                 l = mid + 1;
             else
                 r = mid;
