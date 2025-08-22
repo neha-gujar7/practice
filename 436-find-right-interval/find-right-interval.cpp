@@ -2,32 +2,21 @@ class Solution {
 public:
     vector<int> findRightInterval(vector<vector<int>>& intervals) {
         int n = intervals.size();
-        vector<int> ans(n, -1);
-        // storing {start, index} as a pair for easy access
-        vector<pair<int,int>> s;
-        for (int i = 0; i < n; i++) {
-            s.push_back({intervals[i][0], i});
-        }
-        // sort by starts
-        sort(s.begin(), s.end());
-        //  each interval, binary search in starts
-        for (int i = 0; i < n; i++) {
-            int target = intervals[i][1];
-            int l = 0, r = n - 1;
-            int temp= -1;
+        vector<int> res(n, -1);
 
-            while (l <= r) {
-                int mid = l + (r - l) / 2;
-                if (s[mid].first >= target) {
-                    temp = s[mid].second; // potential answer
-                    r = mid - 1; // look for smaller start
-                } else {
-                    l = mid + 1;
+        for(int i = 0; i < n; i++){
+            int end = intervals[i][1];
+            int mini_st = INT_MAX;
+            int mini_idx = -1;
+
+            for(int j = 0; j < n; j++){
+                if(intervals[j][0] >= end && intervals[j][0] < mini_st){
+                    mini_st = intervals[j][0];
+                    mini_idx = j;
                 }
             }
-            ans[i] = temp;
+            res[i] = mini_idx;
         }
-
-        return ans;
+        return res;
     }
 };
