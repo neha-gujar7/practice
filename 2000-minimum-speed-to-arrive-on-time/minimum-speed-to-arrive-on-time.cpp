@@ -1,24 +1,22 @@
 class Solution {
 public:
-    int minSpeedOnTime(vector<int>& dist, double hour) {
-        int n = dist.size() - 1;
-        if(hour <= n) return -1;
-
-        auto arrive_t = [&](int speed) -> bool {
-            double time = 0;
-            for(int i = 0; i < n; ++i){
-                time += (dist[i] - 1) / speed + 1;  // ceil trick
-            }
-            time += double(dist[n]) / speed;        // last train
-            return time <= hour;
-        };
-
-        int l = 1, h = 1e7;
-        while(l < h){
-            int mid = (h + l) / 2;
-            if(arrive_t(mid)) h = mid;
-            else l = mid + 1;
+    bool func(vector<int> &d, double h, int sp) {
+        double time = 0;
+        for (int i = 0; i < d.size(); i++) {
+            time += (double)d[i] / sp;
+            if (time > h) return false;
+            if (i != d.size() - 1) time = ceil(time);
         }
-        return l;
+        return true;
+    }
+
+    int minSpeedOnTime(vector<int>& d, double h) {
+        int l = 1, r = 1e7, ans = -1;
+        while (l <= r) {
+            int m = l + (r - l) / 2;
+            if (func(d, h, m)) ans = m, r = m - 1;
+            else l = m + 1;
+        }
+        return ans;
     }
 };
