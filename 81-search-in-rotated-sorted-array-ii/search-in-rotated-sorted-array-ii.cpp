@@ -12,15 +12,14 @@ public:
                 l++;
                 r--;
             }
-
-// for left half sorted 
+            // for left half sorted
             else if (nums[l] <= nums[mid]) {
                 if (nums[l] <= target && target < nums[mid]) {
                     r = mid - 1;
                 } else {
                     l = mid + 1;
                 }
-            } else { //for right half sorted checking
+            } else { // for right half sorted checking
                 if (nums[mid] < target && target <= nums[r]) {
                     l = mid + 1;
                 } else {
