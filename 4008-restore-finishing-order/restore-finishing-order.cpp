@@ -1,12 +1,15 @@
 class Solution {
 public:
     vector<int> recoverOrder(vector<int>& order, vector<int>& friends) {
-        set<int> s(friends.begin(), friends.end());  // check if element is in friends
-        vector<int> res;
+        set<int> st;
+        for (int x : friends) {
+            st.insert(x);
+        }
 
-        for(int x : order) {   // iterate in the order of 'order'
-            if(s.find(x) != s.end()) {
-                res.push_back(x);
+        vector<int> res;
+        for (int num : order) {
+            if (st.count(num)) {
+                res.push_back(num);
             }
         }
 
