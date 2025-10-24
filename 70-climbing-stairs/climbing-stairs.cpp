@@ -1,34 +1,58 @@
 class Solution {
 public:
-    // int climbStairs(int n) {
-    //     return f(0, n);
+    // recursion-------------
+    //  int climbStairs(int n) {
+    //      return f(0, n);
+    //  }
+    //  int f(int i, int n) {
+    //      if (i == n) {
+    //          return 1;
+    //      }
+    //      if(i>n) return 0;
+
+    //     return f(i + 1, n)+f(i + 2, n); ;
     // }
-    // int f(int i, int n) {
+
+    //----------memoization
+
+    // int climbStairs(int n) {
+    //     vector<int> dp(n,-1);
+    //     return f(0, n,dp);
+    // }
+    // int f(int i, int n,vector<int>& dp) {
     //     if (i == n) {
     //         return 1;
     //     }
     //     if(i>n) return 0;
-        
-    //     return f(i + 1, n)+f(i + 2, n); ;
+
+    //     if(dp[i]!=-1){
+    //         return dp[i];
+    //     }
+
+    //     return dp[i]=f(i + 1, n,dp)+f(i + 2, n,dp); ;
     // }
 
-
+    //------tabulation
+    // int climbStairs(int n) {
+    //     vector<int> dp(n + 2, 0);
+    //     dp[n] = 1;
+    //     for (int i = n - 1; i >= 0; i--) {
+    //         dp[i] = dp[i + 1] + dp[i + 2];
+    //     }
+    //     return dp[0];
+    // }
 
     int climbStairs(int n) {
-        vector<int> dp(n,-1);
-        return f(0, n,dp);
-    }
-    int f(int i, int n,vector<int>& dp) {
-        if (i == n) {
-            return 1;
-        }
-        if(i>n) return 0;
+        // vector<int> dp(n + 2, 0);
+        // dp[n] = 1;
+        int l=1,r=0;
 
-        if(dp[i]!=-1){
-            return dp[i];
+        for (int i = n - 1; i >= 0; i--) {
+            int cur= r+l;
+            r=l;
+            l=cur;
         }
-
-        
-        return dp[i]=f(i + 1, n,dp)+f(i + 2, n,dp); ;
+        return l;
     }
 };
+
