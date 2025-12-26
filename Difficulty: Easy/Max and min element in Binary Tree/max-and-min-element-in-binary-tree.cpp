@@ -15,31 +15,29 @@ struct Node
 */
 class Solution {
   public:
+    int mini = INT_MAX, maxi = INT_MIN; 
+  
+    void f(Node *root) {
+        if(root == NULL) return;
+
+        mini = min(mini, root->data);  
+        maxi = max(maxi, root->data);  
+
+        f(root->left);
+        f(root->right);
+    }
+
     int findMax(Node *root) {
-        // code here
-        if(root==nullptr) return INT_MIN;
-        
-        int lefti=findMax(root->left);
-        int righti=findMax(root->right);
-        
-        int temp=root->data;
-        if(lefti>temp) temp=lefti;
-        if(righti>temp) temp=righti;
-        return temp;
-        
+        mini = INT_MAX;  
+        maxi = INT_MIN;
+        f(root);
+        return maxi;
     }
 
     int findMin(Node *root) {
-        
-        if(root==nullptr) return INT_MAX;
-        
-        int lefti=findMin(root->left);
-        int righti=findMin(root->right);
-        
-        int temp=root->data;
-        if(lefti<temp) temp=lefti;
-        if(righti<temp) temp=righti;
-        return temp;
-        // code here
+        mini = INT_MAX;   
+        maxi = INT_MIN;
+        f(root);
+        return mini;
     }
 };
