@@ -4,12 +4,12 @@ class Solution {
 	void topodfs(int nod, vector<int>& vs, vector<pair<int, int>> ad[], stack<int>& st) {
 		vs[nod] = 1;
 		for (auto it: ad[nod]) {
-		int v = it.first;
+			int v = it.first;
 			if (!vs[v]) {
 				topodfs(v, vs, ad, st);
 			}
 		}
-		st.push(nod); 
+		st.push(nod);
 		
 	}
 	
@@ -28,7 +28,7 @@ class Solution {
 		
 		stack<int>st;
 		for (int i = 0; i<V; i++) {
-		  //  int v = it.first;
+			//  int v = it.first;
 			if (!vs[i]) {
 				topodfs(i, vs, ad, st);
 			}
@@ -37,11 +37,11 @@ class Solution {
 		vector<int> dst(V, 1e9);
 		vector<int> ans(V, -1);
 		
-		for (int i = 0; i<V; i++) {
-			if (dst[i] != 1e9) {
-				ans[i] = dst[i];
-			}
-		}
+// 		for (int i = 0; i<V; i++) {
+// 			if (dst[i] != 1e9) {
+// 				ans[i] = dst[i];
+// 			}
+// 		}
 		
 		dst[0] = 0;
 		while (!st.empty()) {
@@ -56,11 +56,11 @@ class Solution {
 				}
 			}
 		}
-		for(int i=0;i<V;i++)
-{
-    if(dst[i]==1e9)
-        dst[i]=-1;
-}
+		for (int i = 0; i<V; i++)
+			{
+			if (dst[i] == 1e9)
+				dst[i] = -1;
+		}
 		
 		return dst;
 		
