@@ -5,6 +5,7 @@ public:
                           int end_node) {
 
         vector<pair<int, double>> adj[n];
+
         for (int i = 0; i < edges.size(); i++) {
             int u = edges[i][0];
             int v = edges[i][1];
@@ -16,33 +17,36 @@ public:
 
         vector<double> prob(n, 0.0);
         prob[start_node] = 1.0;
+
         priority_queue<pair<double, int>> pq;
         pq.push({1.0, start_node});
+
         while (!pq.empty()) {
             pair<double, int> p = pq.top();
-
-            double curProb = p.first;
-            int u = p.second;
             pq.pop();
 
-            if (u == end_node)
-                return curProb;
+            double curp = p.first;
+            int u = p.second;
 
-            if (curProb < prob[u])
+            if (u == end_node)
+                return curp;
+
+            if (curp < prob[u])
                 continue;
-            
+
             for (auto x : adj[u]) {
                 int v = x.first;
                 double p = x.second;
 
-                double newProb = curProb * p;
+                double newp = curp * p;
 
-                if (newProb > prob[v]) {
-                    prob[v] = newProb;
-                    pq.push({newProb, v});
+                if (newp > prob[v]) {
+                    prob[v] = newp;
+                    pq.push({newp, v});
                 }
             }
         }
+
         return 0.0;
     }
 };
