@@ -10,8 +10,8 @@ public:
             while (b < n && result[b] == 'X')
                 b++;
 
-            if (a == n || b == n)
-                return a == n && b == n;
+            if(a==n && b==n) return true;
+            if(a==n || b==n) return false;
 
             if (start[a] != result[b])
                 return false;
