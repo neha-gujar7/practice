@@ -26,6 +26,9 @@ public:
         }
         int p = n - fp;
         int ng = fz;
+        if(nums[n-1]==0){
+            return ng;
+        }
         return max(p, ng);
     }    
 };
