@@ -3,7 +3,7 @@ public:
     int maximumCount(vector<int>& nums) {
         int n = nums.size();
         int l = 0, r = n - 1;
-        int fp = n, fz = n, cz = 0;
+        int fp = 0, fz = 0, cz = 0;
         while (l <= r) {
             int m = l + (r - l) / 2;
             if (nums[m] > 0) {
