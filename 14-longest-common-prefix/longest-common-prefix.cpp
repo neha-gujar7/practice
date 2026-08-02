@@ -5,13 +5,14 @@ public:
         sort(strs.begin(),strs.end());
 
         string s="";
-        int x=min(strs[0].size(),strs[n-1].size());
-        for(int i=0;i<x;i++){
+        int mini=min(strs[0].size(),strs[n-1].size());
+        for(int i=0;i<mini;i++){
             if(strs[0][i]==strs[n-1][i]){
                 s+=strs[0][i];
             }
             else break;
         }
-        return s;
+return s;        
+            
     }
 };
